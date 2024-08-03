@@ -27,7 +27,7 @@ def test_main_page_search_positive_result():
 
 
 @allure.feature('Search on the main page')
-@allure.title('Test of search with positive result')
+@allure.title('Test of search with negative result')
 @allure.tag('Search', 'Main page')
 @allure.severity(severity_level=Severity.NORMAL)
 @allure.label('owner', 'Viktoriia Lavrova')

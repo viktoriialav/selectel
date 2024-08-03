@@ -1,6 +1,6 @@
 import allure
 from allure_commons.types import Severity
-from selene import browser, have, command
+from selene import browser, have
 
 from selectel_tests.applications import app
 from selectel_tests.data.service import Service
