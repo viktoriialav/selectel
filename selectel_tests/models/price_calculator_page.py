@@ -1,4 +1,4 @@
-from selene import browser, have
+from selene import browser, have, command
 
 
 class PriceCalculator:
@@ -18,9 +18,9 @@ class PriceCalculator:
     def add_firewall(self, value):
         browser.all('.hyper-calc-layout__tab ').element_by(have.exact_text(value)).click()
         browser.all('.firewall-card').first.element('.ant-btn').click()
-        browser.all('.add-modal .ant-btn').second.click()
+        browser.all('.add-modal .ant-btn').second.perform(command.js.click)
 
     def add_dedicated_server(self, value):
         browser.all('.hyper-calc-layout__tab ').element_by(have.exact_text(value)).click()
         browser.all('.server--hc').first.element('.ant-btn').click()
-        browser.element('.add-modal .ant-btn').click()
+        browser.element('.add-modal .ant-btn').perform(command.js.click)
