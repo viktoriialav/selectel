@@ -42,7 +42,7 @@ ___
       </td>
     </tr>
     <tr>
-      <td>Библиотеки, фреймворки</td>
+      <td>Библиотеки, фреймворки для написания тестов</td>
       <td align="center">
         <a target="_blank" href=https://www.selenium.dev/>
           <img align="center" src="/resources/Selenium.png" width="40" height="40" alt="Selenium"/>
