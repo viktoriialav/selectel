@@ -14,19 +14,14 @@ from selectel_tests.data.user import user_for_sign_in_without_phone_number, user
 @allure.link('https://selectel.ru')
 def test_sing_in_to_account_without_phone_number():
     # GIVEN
-    with allure.step('Open "sign in" form and create user'):
-        app.sign_in_page.open()
-        user = user_for_sign_in_without_phone_number
+    app.sign_in_page.open()
+    user = user_for_sign_in_without_phone_number
 
     # WHEN
-    with allure.step('Fill registration form'):
-        app.sign_in_page.enter_username(user.account_number)
-        app.sign_in_page.enter_password(user.password)
-        app.sign_in_page.submit()
+    app.sign_in_page.fill_form(user)
 
     # THEN
-    with allure.step('Check form results'):
-        app.sign_in_page.should_have_user_account_number(user.account_number)
+    app.sign_in_page.should_have_user_account_number(user.account_number)
 
 
 @allure.feature('"Sing in" form')
@@ -37,19 +32,13 @@ def test_sing_in_to_account_without_phone_number():
 @allure.link('https://selectel.ru')
 def test_sing_in_to_account_with_wrong_password():
     # GIVEN
-    with allure.step('Open "sign in" form and create user'):
-        app.sign_in_page.open()
-        user = user_for_sign_in_with_wrong_password
+    app.sign_in_page.open()
 
     # WHEN
-    with allure.step('Fill registration form'):
-        app.sign_in_page.enter_username(user.account_number)
-        app.sign_in_page.enter_password(user.password)
-        app.sign_in_page.submit()
+    app.sign_in_page.fill_form(user_for_sign_in_with_wrong_password)
 
     # THEN
-    with allure.step('Check form results'):
-        app.sign_in_page.should_have_alert_message()
+    app.sign_in_page.should_have_alert_message()
 
 
 @allure.feature('"Sing in" form')
@@ -60,18 +49,12 @@ def test_sing_in_to_account_with_wrong_password():
 @allure.link('https://selectel.ru')
 def test_sing_in_to_account_with_phone_number():
     # GIVEN
-    with allure.step('Open "sign in" form and create user'):
-        app.sign_in_page.open()
-        user = user_for_sign_in_with_phone_number
+    app.sign_in_page.open()
 
     # WHEN
-    with allure.step('Fill registration form'):
-        app.sign_in_page.enter_username(user.account_number)
-        app.sign_in_page.enter_password(user.password)
-        app.sign_in_page.submit()
+    app.sign_in_page.fill_form(user_for_sign_in_with_phone_number)
 
     # THEN
-    with allure.step('Check form results'):
-        app.sign_in_page.should_have_message_with_special_code()
+    app.sign_in_page.should_have_message_with_special_code()
 
 
