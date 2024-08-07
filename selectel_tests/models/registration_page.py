@@ -42,8 +42,7 @@ class RegistrationPage:
             have.exact_text('Обязательное поле'))
         browser.element('[stl="registration__repeat_pass_input__required_err"]').should(
             have.exact_text('Обязательное поле'))
-        browser.element('.ng-tns-c4199843130-3.ant-form-item-explain-error').should(
-            have.exact_text('Необходимо отметить чекбокс'))
+        browser.all('.ant-form-item-explain-error')[-1].should(have.exact_text('Необходимо отметить чекбокс'))
 
     def should_have_message_with_email(self, value):
         browser.element('.main-column .content-section').element('[stl="registration__confirmation__text"]').should(
