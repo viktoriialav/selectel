@@ -150,8 +150,13 @@ ___
 <a id="item-8"></a>
 ### Видео о прохождении тестов
 В **Allure** отчете для всех тестов приведены видео с их прохождением. 
-Ниже в качестве примера приведены некоторые из них в одном видео.
-
+Ниже приведены:
+- все, кроме последнего теста  
 <p>
 <img src="resources/video_tests.gif" alt="Selenoid Video">
+</p>
+
+- последний тест  
+<p>
+<img src="resources/video_price_calculator.gif" alt="Selenoid Video">
 </p>
