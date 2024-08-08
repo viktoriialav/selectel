@@ -32,7 +32,7 @@ class RegistrationPage:
     def submit(self):
         browser.element('.content-section .sui-form_submit-button').click()
 
-    def fill_in_form(self, user: UserRegForm):
+    def fill_form(self, user: UserRegForm):
         with allure.step('Fill the registration form'):
             self.enter_email(user.email)
             self.enter_password(user.password)
