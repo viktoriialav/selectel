@@ -11,7 +11,7 @@ from selectel_tests.data.service import Service
 @allure.severity(severity_level=Severity.NORMAL)
 @allure.label('owner', 'Viktoriia Lavrova')
 @allure.link('https://selectel.ru/prices/calculator/')
-def test_price_calculator_for_cloud_server_perform_price_report():
+def test_price_calculator_to_add_and_delete_all_options():
     # GIVEN
     app.price_calculator.open()
 
