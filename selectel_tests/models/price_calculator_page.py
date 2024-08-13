@@ -26,7 +26,7 @@ class PriceCalculator:
             browser.all('.hyper-calc-layout__tab').element_by(have.exact_text(item.value)).click()
 
             # Select necessary option and add it
-            browser.all('.server--hc').first.element('.ant-btn').click()
+            browser.all('.server--hc .server__quantity--available').first.element('..').element('.ant-btn').click()
             browser.element('.add-modal .ant-btn').perform(command.js.click)
 
     def add_dedicated_server_config(self, item: Service):
@@ -44,7 +44,7 @@ class PriceCalculator:
             browser.element('#select_container_13').element('#select_option_14').click()
 
             # Wait for the option to be added
-            browser.element('[name=select_ram0]').with_(timeout=10).should(have.attribute('aria-disabled').value("false"))
+            browser.element('[name=select_ram0]').with_(timeout=10).should(have.attribute('aria-disabled').value('false'))
 
             # Exit the frame
             browser.switch_to_previous_tab()
