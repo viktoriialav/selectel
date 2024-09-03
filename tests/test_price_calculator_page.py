@@ -1,7 +1,7 @@
 import allure
 from allure_commons.types import Severity
 
-from selectel_tests.applications import app
+from selectel_tests.models.applications import app
 from selectel_tests.data.service import Service
 
 

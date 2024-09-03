@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "selectel"
+version = "0.1.0"
+description = ""
+authors = ["Viktoriia Lavrova <viktoriia.lav2908@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pytest = "^8.3.2"
+selene = "2.0.0rc9"
+allure-pytest = "^2.13.5"
+python-dotenv = "^1.0.1"
+requests = "^2.32.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.pytest.ini_options]
+log_cli = true
+log_cli_level = 'INFO'
+log_cli_format = "%(asctime)s [%(levelname)8s] %(message)s (%(filename)s:%(lineno)s)"
+log_cli_date_format = "%Y-%m-%d %H:%M:%S"
+addopts = "--clean-alluredir --alluredir=allure-results -s"

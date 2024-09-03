@@ -1,7 +1,7 @@
 import allure
 from allure_commons.types import Severity
 
-from selectel_tests.applications import app
+from selectel_tests.models.applications import app
 from selectel_tests.data.user import user_for_registration_form, user_for_registration_form_with_wrong_data, \
     user_for_registration_form_with_empty_data
 

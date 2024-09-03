@@ -1,7 +1,7 @@
 import allure
 from allure_commons.types import Severity
 
-from selectel_tests.applications import app
+from selectel_tests.models.applications import app
 from selectel_tests.data.user import user_for_sign_in_without_phone_number, user_for_sign_in_with_wrong_password, \
     user_for_sign_in_with_phone_number
 
