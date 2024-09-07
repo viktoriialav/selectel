@@ -39,7 +39,7 @@ user_for_registration_form_with_empty_data = UserRegForm(
     receive_news=False
 )
 
-user_for_sign_in_without_phone_number = UserSignIn(
+user_for_sign_in_without_two_step_authentication = UserSignIn(
     account_number='335553',
     password='QaQa4321'
 )
@@ -49,7 +49,7 @@ user_for_sign_in_with_wrong_password = UserSignIn(
     password='Kuku123456789'
 )
 
-user_for_sign_in_with_phone_number = UserSignIn(
+user_for_sign_in_with_two_step_authentication = UserSignIn(
     account_number='335938',
     password='LaLaLa1234'
 )

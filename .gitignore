@@ -1,6 +1,6 @@
 # User-specific stuff
 .env
-tests/rubbish.py
+temp_info.py
 
 # JetBrains
 .idea/
