@@ -1,4 +1,8 @@
+import os
 from dataclasses import dataclass
+import dotenv
+
+dotenv.load_dotenv()
 
 @dataclass
 class UserRegForm:
@@ -39,17 +43,17 @@ user_for_registration_form_with_empty_data = UserRegForm(
     receive_news=False
 )
 
-user_for_sign_in_without_two_step_authentication = UserSignIn(
-    account_number='335553',
-    password='QaQa4321'
+user_for_sign_in_without_two_step_auth = UserSignIn(
+    account_number=os.getenv('account_number_without_two_step_auth'),
+    password=os.getenv('password_without_two_step_auth')
 )
 
 user_for_sign_in_with_wrong_password = UserSignIn(
-    account_number='335553',
+    account_number=os.getenv('account_number_without_two_step_auth'),
     password='Kuku123456789'
 )
 
-user_for_sign_in_with_two_step_authentication = UserSignIn(
-    account_number='335938',
-    password='LaLaLa1234'
+user_for_sign_in_with_two_step_auth = UserSignIn(
+    account_number=os.getenv('account_number_with_two_step_auth'),
+    password=os.getenv('password_with_two_step_auth')
 )
