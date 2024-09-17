@@ -1,8 +1,12 @@
+import os
+
+import dotenv
 import pytest
 from selene import browser
 from selenium import webdriver
 
 import config
+from selectel_tests.models.api_session import session
 from selectel_tests.utils import attach
 
 
@@ -32,3 +36,11 @@ def browser_management():
     attach.add_video(browser)
 
     browser.quit()
+
+
+@pytest.fixture(scope='session')
+def api_session():
+    dotenv.load_dotenv()
+    session.base_url = 'https://api.selectel.ru/'
+    session.auth_headers = {os.getenv('token_name'): os.getenv('token_value')}
+    return session
