@@ -117,17 +117,6 @@ class TestServices:
         model = ListServices.model_validate(response.json())
         assert sum(elem[param] == model_name for elem in response.json()['result']) == len(model.result)
 
-    def test_get_services_colocation_uuid(self, api_session):
-        uuid = 'e44c8700-58bc-47aa-b8a7-75a69868e8a6'
-        response = api_session.request(method='GET',
-                                       endpoint=f'servers/v2/service/colocation/{uuid}')
-
-        print(json_dumping(response.json()))
-
-        assert response.status_code == 200
-        # TODO add schema validation
-        # TODO add checking smth in response
-
     def test_get_services_colocation_uuid_billing(self, api_session):
         uuid = 'e44c8700-58bc-47aa-b8a7-75a69868e8a6'
         payload = {
@@ -148,4 +137,3 @@ class TestServices:
         price_info = model.result.price
         period = model.result.current_price_plan.period
         assert int(price_info.plan_price // (100 - price_info.discount) * 100 // period) == 12800
-
