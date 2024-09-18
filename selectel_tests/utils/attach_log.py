@@ -1,7 +1,11 @@
+import logging
 import os
 
 import allure
 from allure_commons.types import AttachmentType
+from requests import Response
+
+from selectel_tests.utils.format_view import pretty_headers, pretty_body
 
 
 def add_screenshot(browser):
@@ -26,3 +30,17 @@ def add_video(browser):
            + video_url \
            + "' type='video/mp4'></video></body></html>"
     allure.attach(body=html, name='video_' + session_id, attachment_type=AttachmentType.HTML, extension='.html')
+
+
+def allure_request_logger(function):
+    def wrapper(*args, **kwargs):
+        response: Response = function(*args, **kwargs)
+
+        logging.info(f'\n\nREQUEST {response.request.method} {response.request.url}\n'
+                     f'\nREQUEST HEADERS: \n{pretty_headers(response.request.headers)}\n'
+                     f'\nREQUEST BODY: \n{pretty_body(response.request.body)}\n'
+                     f'\nRESPONSE HEADERS: \n{pretty_headers(response.headers)}\n'
+                     f'\nRESPONSE BODY: \n{pretty_body(response.text)}\n')
+        return response
+
+    return wrapper

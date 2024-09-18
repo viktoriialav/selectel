@@ -7,7 +7,7 @@ from selenium import webdriver
 
 import config
 from selectel_tests.models.api_session import session
-from selectel_tests.utils import attach
+from selectel_tests.utils import attach_log
 
 
 @pytest.fixture(scope='function')
@@ -30,10 +30,10 @@ def browser_management():
 
     yield
 
-    attach.add_screenshot(browser)
-    attach.add_logs(browser)
-    attach.add_html(browser)
-    attach.add_video(browser)
+    attach_log.add_screenshot(browser)
+    attach_log.add_logs(browser)
+    attach_log.add_html(browser)
+    attach_log.add_video(browser)
 
     browser.quit()
 

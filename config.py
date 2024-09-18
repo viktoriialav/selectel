@@ -8,7 +8,7 @@ from selenium.webdriver import ChromeOptions, FirefoxOptions
 
 from selectel_tests.utils import path
 
-BrowserVersions = Literal['100.0', '113.0', '114.0', '120.0', '121.0', '122.0', '123.0', '124.0', '125.0', '126.0']
+BrowserVersions = Literal['122.0', '123.0', '124.0', '125.0']
 EnvContext = Literal['local', 'selenoid']
 BrowserType = Literal['chrome', 'firefox']
 
@@ -33,6 +33,7 @@ class Settings(BaseSettings):
     def driver_options(self):
         if self.driver_name == 'chrome':
             options = ChromeOptions()
+
         else:
             options = FirefoxOptions()
 
@@ -69,4 +70,3 @@ class Settings(BaseSettings):
 
 
 settings = Settings.in_context()
-
