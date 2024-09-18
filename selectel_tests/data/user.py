@@ -18,6 +18,13 @@ class UserSignIn:
     account_number: str
     password: str
 
+@dataclass
+class UserAccount:
+    account_number: str
+    password: str
+    email: str
+    account_balance: str
+
 
 user_for_registration_form = UserRegForm(
     email='example@yahoo.com',
@@ -57,3 +64,11 @@ user_for_sign_in_with_two_step_auth = UserSignIn(
     account_number=os.getenv('account_number_with_two_step_auth'),
     password=os.getenv('password_with_two_step_auth')
 )
+
+user_for_testing_account = UserAccount(
+    account_number=os.getenv('account_number_without_two_step_auth'),
+    password=os.getenv('password_without_two_step_auth'),
+    email=os.getenv('email_without_two_step_auth'),
+    account_balance='0 ₽'
+)
+

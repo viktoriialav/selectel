@@ -23,7 +23,7 @@ class TestSignInForm:
             app.sign_in_page.fill_form(user)
 
             # THEN
-            app.sign_in_page.should_have_user_account_number_in_user_account(user.account_number)
+            app.user_account.should_have_user_account_number(user.account_number)
 
         @allure.tag('Sign in', 'Main page')
         def test_sing_in_to_account_with_two_step_authentication(self, browser_management):

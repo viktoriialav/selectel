@@ -32,10 +32,6 @@ class SignInPage:
             browser.element('.ant-alert-message').should(have.exact_text(
                 'Неверный номер аккаунта или пароль. Если вы регистрировались по приглашению, отметьте чекбокс под полем «номер аккаунта».'))
 
-    def should_have_user_account_number_in_user_account(self, value):
-        with allure.step('Check form results'):
-            browser.element('.sui-profile-dropdown-account-id').should(have.exact_text(f'Аккаунт {value}'))
-
     def should_have_user_account_number_on_main_page(self, value):
         with allure.step('Check form results'):
             browser.element('.header__control .account-info__id.small').should(have.exact_text(f'Аккаунт {value}'))
