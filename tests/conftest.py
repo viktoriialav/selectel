@@ -31,7 +31,8 @@ def browser_management():
     yield
 
     attach_log.add_screenshot(browser)
-    attach_log.add_logs(browser)
+    if config.settings.driver_name != 'firefox':
+        attach_log.add_logs(browser)
     attach_log.add_html(browser)
     attach_log.add_video(browser)
 

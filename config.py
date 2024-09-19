@@ -9,7 +9,7 @@ from selenium.webdriver import ChromeOptions, FirefoxOptions
 from selectel_tests.utils import path
 
 BrowserVersions = Literal['122.0', '123.0', '124.0', '125.0']
-EnvContext = Literal['local', 'selenoid']
+EnvContext = Literal['local', 'selenoid_chrome', 'selenoid_firefox']
 BrowserType = Literal['chrome', 'firefox']
 
 
@@ -65,7 +65,7 @@ class Settings(BaseSettings):
 
     @classmethod
     def in_context(cls, env: Optional[EnvContext] = None) -> 'Settings':
-        env = env or cls().env_context
+        env = env or (cls().env_context + cls.driver_name)
         return cls(_env_file=path.abs_path_from_root(f'.env.{env}'))
 
 
