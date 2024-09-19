@@ -5,6 +5,7 @@ from selectel_tests.schemas.resource_tag import ListResourceTags, ResourceTagReq
 from selectel_tests.schemas.service import ListServices, ServiceColocationUuidBillingRequestBody, \
     ServiceColocationUuidBillingModel
 from selectel_tests.utils.format_view import json_dumping, bytes_to_dict
+from selectel_tests.utils.generate_tag import random_tag
 
 
 class TestResources:
@@ -29,7 +30,7 @@ class TestResources:
 
 class TestResourceTags:
     def test_create_new_user_tag(self, api_session):
-        name = 'Hasss12223'
+        name = random_tag()
         response = api_session.request(method='POST',
                                        endpoint='servers/v2/resource/tag',
                                        json={'name': name})
@@ -53,7 +54,7 @@ class TestResourceTags:
         all_tags = response_to_find_uuid.json()['result']
         first_uuid = all_tags[0]['uuid']
 
-        new_name = 'kuku'
+        new_name = random_tag()
         main_response = api_session.request(method='PUT',
                                             endpoint=f'servers/v2/resource/tag/{first_uuid}',
                                             json={'name': new_name})
@@ -67,6 +68,7 @@ class TestResourceTags:
         response = api_session.request(method='GET',
                                        endpoint='servers/v2/resource/tag')
         uuid = response.json()['result'][0]['uuid']
+
         response = api_session.request(method='DELETE',
                                        endpoint=f'servers/v2/resource/tag/{uuid}')
 
