@@ -1,3 +1,6 @@
+import allure
+from allure_commons.types import Severity
+
 from selectel_tests.schemas.price_plans import ListPricePlans
 from selectel_tests.schemas.resource import ListResources, ResourceBillingInfo
 from selectel_tests.schemas.resource_tag import ListResourceTags, ResourceTagRequestBody, DeletedResourceTag, \
@@ -8,7 +11,12 @@ from selectel_tests.utils.format_view import json_dumping, bytes_to_dict
 from selectel_tests.utils.generate_tag import random_tag
 
 
+@allure.feature('Resources')
+@allure.label('owner', 'Viktoriia Lavrova')
+@allure.link('https://developers.selectel.ru/docs/servers/dedicated_servers/')
 class TestResources:
+    @allure.severity(severity_level=Severity.CRITICAL)
+    @allure.tag('GET', 'Resource list')
     def test_get_resources(self, api_session):
         response = api_session.request(method='GET',
                                        endpoint='servers/v2/resource')
@@ -19,6 +27,8 @@ class TestResources:
         assert model.status == 'SUCCESS'
         assert model.result == []
 
+    @allure.severity(severity_level=Severity.CRITICAL)
+    @allure.tag('GET', 'Resource', 'Billing info')
     def test_get_resources_billing_info(self, api_session):
         response = api_session.request(method='GET',
                                        endpoint='servers/v2/resource/billing/info')
@@ -28,7 +38,12 @@ class TestResources:
         assert model.result.unpaid_sum == 0
 
 
+@allure.feature('Resource tags')
+@allure.label('owner', 'Viktoriia Lavrova')
+@allure.link('https://developers.selectel.ru/docs/servers/dedicated_servers/')
 class TestResourceTags:
+    @allure.severity(severity_level=Severity.NORMAL)
+    @allure.tag('Create', 'Tag', 'POST')
     def test_create_new_user_tag(self, api_session):
         name = random_tag()
         response = api_session.request(method='POST',
@@ -40,6 +55,8 @@ class TestResourceTags:
         assert name == model.result.name
         ResourceTagRequestBody.model_validate(bytes_to_dict(response.request.body))
 
+    @allure.severity(severity_level=Severity.NORMAL)
+    @allure.tag('GET', 'Tag list')
     def test_get_list_all_user_tags(self, api_session):
         response = api_session.request(method='GET',
                                        endpoint='servers/v2/resource/tag')
@@ -48,6 +65,8 @@ class TestResourceTags:
         ListResourceTags.model_validate(response.json())
         assert response.request.body is None
 
+    @allure.severity(severity_level=Severity.NORMAL)
+    @allure.tag('GET', 'Update', 'Tag')
     def test_update_user_tag(self, api_session):
         response_to_find_uuid = api_session.request(method='GET',
                                                     endpoint='servers/v2/resource/tag')
@@ -64,6 +83,8 @@ class TestResourceTags:
         assert model.result.name == new_name
         ResourceTagRequestBody.model_validate(bytes_to_dict(main_response.request.body))
 
+    @allure.severity(severity_level=Severity.NORMAL)
+    @allure.tag('DELETE', 'Tag')
     def test_delete_user_tag(self, api_session):
         response = api_session.request(method='GET',
                                        endpoint='servers/v2/resource/tag')
@@ -78,7 +99,12 @@ class TestResourceTags:
         assert uuid == model.result.uuid
 
 
+@allure.feature('Price plans')
+@allure.label('owner', 'Viktoriia Lavrova')
+@allure.link('https://developers.selectel.ru/docs/servers/dedicated_servers/')
 class TestPricePlans:
+    @allure.severity(severity_level=Severity.NORMAL)
+    @allure.tag('GET', 'Price plane')
     def test_get_price_all_price_plans_and_check_all_ones_are_different(self, api_session):
         response = api_session.request(method='GET', endpoint='servers/v2/plan')
 
@@ -87,6 +113,8 @@ class TestPricePlans:
         model = ListPricePlans.model_validate(response.json())
         assert model.item_count == len(set(elem.name for elem in model.result))
 
+    @allure.severity(severity_level=Severity.NORMAL)
+    @allure.tag('GET', 'Price plane', 'uuid')
     def test_get_special_price_plan(self, api_session):
         uuid = '74566568-dae2-48e4-97da-0b4a7ef7fff0'
         response = api_session.request(method='GET', endpoint=f'servers/v2/plan/{uuid}')
@@ -97,7 +125,12 @@ class TestPricePlans:
         assert model.result.period == 3 and model.result.type == 'month'
 
 
+@allure.feature('Resources')
+@allure.label('owner', 'Viktoriia Lavrova')
+@allure.link('https://developers.selectel.ru/docs/servers/dedicated_servers/')
 class TestServices:
+    @allure.severity(severity_level=Severity.NORMAL)
+    @allure.tag('GET', 'Service list')
     def test_get_all_services(self, api_session):
         response = api_session.request(method='GET', endpoint='servers/v2/service')
 
@@ -107,6 +140,8 @@ class TestServices:
         assert response.request.body is None
         ListServices.model_validate(response.json())
 
+    @allure.severity(severity_level=Severity.NORMAL)
+    @allure.tag('GET', 'Service list', 'Specific model')
     def test_get_services_with_specific_model(self, api_session):
         param = 'model'
         model_name = 'firewall'
@@ -119,6 +154,8 @@ class TestServices:
         model = ListServices.model_validate(response.json())
         assert sum(elem[param] == model_name for elem in response.json()['result']) == len(model.result)
 
+    @allure.severity(severity_level=Severity.NORMAL)
+    @allure.tag('POST', 'Service' 'Colocation', 'uuid', 'Billing')
     def test_get_services_colocation_uuid_billing(self, api_session):
         uuid = 'e44c8700-58bc-47aa-b8a7-75a69868e8a6'
         payload = {

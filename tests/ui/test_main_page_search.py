@@ -6,10 +6,10 @@ from selectel_tests.data.text import text_for_positive_search, text_for_negative
 
 
 @allure.feature('Search on the main page')
-@allure.severity(severity_level=Severity.NORMAL)
 @allure.label('owner', 'Viktoriia Lavrova')
 @allure.link('https://selectel.ru')
 class TestMainSearch:
+    @allure.severity(severity_level=Severity.CRITICAL)
     @allure.tag('Search', 'Main page', 'Positive result')
     def test_main_page_search_with_positive_result(self, browser_management):
         # GIVEN
@@ -22,6 +22,7 @@ class TestMainSearch:
         # THEN
         app.main_page_search.should_have_special_result(text.output)
 
+    @allure.severity(severity_level=Severity.NORMAL)
     @allure.tag('Search', 'Main page', 'Negative result')
     def test_main_page_search_with_negative_result(self, browser_management):
         # GIVEN
