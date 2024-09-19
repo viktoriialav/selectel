@@ -36,11 +36,11 @@ class UserAccount:
         with allure.step('Add the first two servers in comparison list'):
             name_list = []
             for i in range(2):
-                self.server_name_list[i].perform(command.js.scroll_into_view)
+                self.server_name_list[i].with_(timeout=10).perform(command.js.scroll_into_view).should(be.visible)
                 name = self.server_name_list[i].get(query.text)
                 name_list.append(name)
-                self.server_button_list[i].perform(command.js.scroll_into_view)
-                self.server_button_list[i].click()
+                self.server_button_list[i].with_(timeout=10).perform(command.js.scroll_into_view).should(be.clickable)
+                self.server_button_list[i].perform(command.js.click)
         return name_list
 
     def go_to_comparison_list(self):
@@ -62,5 +62,3 @@ class UserAccount:
             self.account_id.should(have.exact_text(f'Аккаунт {account_number}'))
             browser.element('.sui-profile-dropdown-account-email').should(have.exact_text(email))
             self.account_balance.should(have.text(balance))
-
-
