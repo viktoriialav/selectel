@@ -40,7 +40,7 @@ class Settings(BaseSettings):
         if self.headless:
             options.add_argument('--headless=new')
 
-        if self.env_context == 'selenoid':
+        if 'selenoid' in self.env_context:
             options = Options()
             selenoid_capabilities = {
                 "browserName": self.driver_name,
@@ -65,7 +65,7 @@ class Settings(BaseSettings):
 
     @classmethod
     def in_context(cls, env: Optional[EnvContext] = None) -> 'Settings':
-        env = env or (cls().env_context + cls.driver_name)
+        env = env or cls().env_context
         return cls(_env_file=path.abs_path_from_root(f'.env.{env}'))
 
 
