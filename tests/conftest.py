@@ -19,7 +19,7 @@ def browser_management():
     browser.config.window_height = config.settings.window_height
     browser.config.driver_name = config.settings.driver_name
 
-    if 'selenoid' in config.settings.env_context:
+    if config.settings.env_context == 'selenoid':
         driver = webdriver.Remote(
             command_executor=config.settings.remote_url,
             options=driver_options)

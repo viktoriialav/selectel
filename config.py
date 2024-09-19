@@ -9,7 +9,7 @@ from selenium.webdriver import ChromeOptions, FirefoxOptions
 from selectel_tests.utils import path
 
 BrowserVersions = Literal['122.0', '123.0', '124.0', '125.0']
-EnvContext = Literal['local', 'selenoid_chrome', 'selenoid_firefox']
+EnvContext = Literal['local', 'selenoid']
 BrowserType = Literal['chrome', 'firefox']
 
 
@@ -40,7 +40,7 @@ class Settings(BaseSettings):
         if self.headless:
             options.add_argument('--headless=new')
 
-        if 'selenoid' in self.env_context:
+        if self.env_context == 'selenoid':
             options = Options()
             selenoid_capabilities = {
                 "browserName": self.driver_name,
