@@ -3,7 +3,6 @@ from typing import Literal, Optional
 
 import dotenv
 from pydantic_settings import BaseSettings
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver import ChromeOptions, FirefoxOptions
 
 from selectel_tests.utils import path
@@ -41,7 +40,6 @@ class Settings(BaseSettings):
             options.add_argument('--headless=new')
 
         if self.env_context == 'selenoid':
-            options = Options()
             selenoid_capabilities = {
                 "browserName": self.driver_name,
                 "browserVersion": self.browser_version or '125.0',

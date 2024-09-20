@@ -23,6 +23,7 @@ class ServicePlanAvailable(BaseModel):
     count: int
     plan_uuid: Annotated[str, StringConstraints(min_length=36, max_length=36)]
 
+
 class ServiceAvailable(BaseModel):
     count: int
     location: Annotated[str, StringConstraints(min_length=36, max_length=36)]

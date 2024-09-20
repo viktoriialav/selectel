@@ -1,8 +1,9 @@
 import os
 
+import allure_commons
 import dotenv
 import pytest
-from selene import browser
+from selene import browser, support
 from selenium import webdriver
 
 import config
@@ -26,6 +27,8 @@ def browser_management():
         browser.config.driver = driver
     else:
         browser.config.driver_options = driver_options
+
+    browser.config._wait_decorator = support._logging.wait_with(context=allure_commons._allure.StepContext)
 
     yield
 

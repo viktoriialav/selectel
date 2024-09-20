@@ -44,7 +44,8 @@ class PriceCalculator:
             browser.element('#select_container_13').element('#select_option_14').click()
 
             # Wait for the option to be added
-            browser.element('[name=select_ram0]').with_(timeout=10).should(have.attribute('aria-disabled').value('false'))
+            browser.element('[name=select_ram0]').with_(timeout=10).should(
+                have.attribute('aria-disabled').value('false'))
 
             # Exit the frame
             browser.switch_to_previous_tab()

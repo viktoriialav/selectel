@@ -71,11 +71,11 @@ class TestResourceTags:
         response_to_find_uuid = api_session.request(method='GET',
                                                     endpoint='servers/v2/resource/tag')
         all_tags = response_to_find_uuid.json()['result']
-        first_uuid = all_tags[0]['uuid']
+        first_tag_uuid = all_tags[0]['uuid']
 
         new_name = random_tag()
         main_response = api_session.request(method='PUT',
-                                            endpoint=f'servers/v2/resource/tag/{first_uuid}',
+                                            endpoint=f'servers/v2/resource/tag/{first_tag_uuid}',
                                             json={'name': new_name})
 
         assert main_response.status_code == 200
@@ -125,7 +125,7 @@ class TestPricePlans:
         assert model.result.period == 3 and model.result.type == 'month'
 
 
-@allure.feature('Resources')
+@allure.feature('Services')
 @allure.label('owner', 'Viktoriia Lavrova')
 @allure.link('https://developers.selectel.ru/docs/servers/dedicated_servers/')
 class TestServices:

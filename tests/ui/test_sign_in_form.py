@@ -1,10 +1,10 @@
 import allure
 from allure_commons.types import Severity
 
-from selectel_tests.models.applications import app
 from selectel_tests.data.user import (user_for_sign_in_without_two_step_auth,
                                       user_for_sign_in_with_wrong_password,
                                       user_for_sign_in_with_two_step_auth)
+from selectel_tests.models.applications import app
 
 
 @allure.feature('"Sing in" form')
@@ -49,8 +49,3 @@ class TestSignInForm:
 
             # THEN
             app.sign_in_page.should_have_alert_message()
-
-
-
-
-

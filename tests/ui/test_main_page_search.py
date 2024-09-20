@@ -1,8 +1,8 @@
 import allure
 from allure_commons.types import Severity
 
-from selectel_tests.models.applications import app
 from selectel_tests.data.text import text_for_positive_search, text_for_negative_search
+from selectel_tests.models.applications import app
 
 
 @allure.feature('Search on the main page')

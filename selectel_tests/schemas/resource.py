@@ -31,5 +31,3 @@ class ResourceBillingInfo(BaseModel):
     result: BillingStatsModel
     status: Optional[str]
     task_id: Annotated[str, StringConstraints(min_length=36, max_length=36)]
-
-

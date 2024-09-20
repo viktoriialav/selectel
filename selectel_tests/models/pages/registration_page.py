@@ -41,7 +41,6 @@ class RegistrationPage:
             self.permit_to_receive_news(user.receive_news)
             self.submit()
 
-
     def should_have_error_messages(self):
         with allure.step('Check form results'):
             browser.element('[stl="registration__email_input__pattern_err"]').should(
@@ -53,7 +52,8 @@ class RegistrationPage:
 
     def should_have_warning_messages(self):
         with allure.step('Check form results'):
-            browser.element('[stl="registration__email_input__required_err"]').should(have.exact_text('Обязательное поле'))
+            browser.element('[stl="registration__email_input__required_err"]').should(
+                have.exact_text('Обязательное поле'))
             browser.element('[stl="registration__password_input__required_err"]').should(
                 have.exact_text('Обязательное поле'))
             browser.element('[stl="registration__repeat_pass_input__required_err"]').should(

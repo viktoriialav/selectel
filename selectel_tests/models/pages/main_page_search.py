@@ -19,4 +19,3 @@ class MainPageSearch:
     def should_have_allert_message(self, value):
         with allure.step('Check the right output of the search'):
             browser.element('.gs-result.gs-no-results-result').should(have.exact_text(value))
-

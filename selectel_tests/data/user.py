@@ -1,8 +1,10 @@
 import os
 from dataclasses import dataclass
+
 import dotenv
 
 dotenv.load_dotenv()
+
 
 @dataclass
 class UserRegForm:
@@ -17,6 +19,7 @@ class UserRegForm:
 class UserSignIn:
     account_number: str
     password: str
+
 
 @dataclass
 class UserAccount:
@@ -71,4 +74,3 @@ user_for_testing_account = UserAccount(
     email=os.getenv('email_without_two_step_auth'),
     account_balance='0 ₽'
 )
-

@@ -27,4 +27,3 @@ def get_auth_cookie(api_session):
         browser.driver.add_cookie(
             {'name': 'uid', 'value': cookie_2, 'path': '/', 'secure': True, 'sameSite': 'Lax', 'httpOnly': True,
              'domain': 'selectel.ru'})
-

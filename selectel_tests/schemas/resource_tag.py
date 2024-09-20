@@ -40,5 +40,3 @@ class ListResourceTags(BaseModel):
 
 class ResourceTagRequestBody(BaseModel):
     name: Annotated[str, StringConstraints(max_length=64)]
-
-

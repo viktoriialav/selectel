@@ -13,4 +13,3 @@ class Service(Enum):
     file_storage = 'Файловое хранилище'
     cloud_vmware = 'Облако на базе VMware'
     firewalls = 'Межсетевые экраны'
-
