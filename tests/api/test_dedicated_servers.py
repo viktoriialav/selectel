@@ -1,4 +1,5 @@
 import allure
+import pytest
 from allure_commons.types import Severity
 
 from selectel_tests.schemas.price_plans import ListPricePlans
@@ -10,10 +11,14 @@ from selectel_tests.schemas.service import ListServices, ServiceColocationUuidBi
 from selectel_tests.utils.format_view import json_dumping, bytes_to_dict
 from selectel_tests.utils.generate_tag import random_tag
 
+pytestmark = [
+    pytest.mark.api,
+    allure.label('owner', 'Viktoriia Lavrova'),
+    allure.link('https://developers.selectel.ru/docs/servers/dedicated_servers/')
+]
+
 
 @allure.feature('Resources')
-@allure.label('owner', 'Viktoriia Lavrova')
-@allure.link('https://developers.selectel.ru/docs/servers/dedicated_servers/')
 class TestResources:
     @allure.severity(severity_level=Severity.CRITICAL)
     @allure.tag('GET', 'Resource list')
@@ -39,8 +44,6 @@ class TestResources:
 
 
 @allure.feature('Resource tags')
-@allure.label('owner', 'Viktoriia Lavrova')
-@allure.link('https://developers.selectel.ru/docs/servers/dedicated_servers/')
 class TestResourceTags:
     @allure.severity(severity_level=Severity.NORMAL)
     @allure.tag('Create', 'Tag', 'POST')
@@ -100,8 +103,6 @@ class TestResourceTags:
 
 
 @allure.feature('Price plans')
-@allure.label('owner', 'Viktoriia Lavrova')
-@allure.link('https://developers.selectel.ru/docs/servers/dedicated_servers/')
 class TestPricePlans:
     @allure.severity(severity_level=Severity.NORMAL)
     @allure.tag('GET', 'Price plane')
@@ -126,8 +127,6 @@ class TestPricePlans:
 
 
 @allure.feature('Services')
-@allure.label('owner', 'Viktoriia Lavrova')
-@allure.link('https://developers.selectel.ru/docs/servers/dedicated_servers/')
 class TestServices:
     @allure.severity(severity_level=Severity.NORMAL)
     @allure.tag('GET', 'Service list')

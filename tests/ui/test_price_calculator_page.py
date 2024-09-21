@@ -1,4 +1,5 @@
 import allure
+import pytest
 from allure_commons.types import Severity
 
 from selectel_tests.data.service import Service
@@ -8,6 +9,7 @@ from selectel_tests.models.applications import app
 @allure.feature('Price calculator page')
 @allure.label('owner', 'Viktoriia Lavrova')
 @allure.link('https://selectel.ru/prices/calculator/')
+@pytest.mark.ui
 class TestPriceCalculator:
     @allure.severity(severity_level=Severity.NORMAL)
     @allure.tag('Service', 'Price', 'Calculator')

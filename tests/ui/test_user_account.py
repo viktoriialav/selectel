@@ -1,4 +1,5 @@
 import allure
+import pytest
 from allure_commons.types import Severity
 
 from selectel_tests.data.user import user_for_testing_account
@@ -9,6 +10,7 @@ from selectel_tests.utils.auth_cookie import get_auth_cookie
 @allure.feature('User account')
 @allure.label('owner', 'Viktoriia Lavrova')
 @allure.link('https://selectel.ru')
+@pytest.mark.ui
 class TestUserAccount:
     @allure.severity(severity_level=Severity.CRITICAL)
     @allure.tag('User account', 'Balance', 'Account number', 'Email')
