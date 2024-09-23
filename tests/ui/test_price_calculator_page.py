@@ -22,4 +22,4 @@ class TestPriceCalculator:
         app.price_calculator.delete_all_services(list(Service))
 
         # THEN
-        app.price_calculator.should_have_special_button()
+        app.price_calculator.should_have_specific_button()

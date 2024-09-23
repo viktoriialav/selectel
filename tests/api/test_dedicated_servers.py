@@ -105,7 +105,7 @@ class TestResourceTags:
 @allure.feature('Price plans')
 class TestPricePlans:
     @allure.severity(severity_level=Severity.NORMAL)
-    @allure.tag('GET', 'Price plane')
+    @allure.tag('GET', 'Price plan')
     def test_get_price_all_price_plans_and_check_all_ones_are_different(self, api_session):
         response = api_session.request(method='GET', endpoint='servers/v2/plan')
 
@@ -115,7 +115,7 @@ class TestPricePlans:
         assert model.item_count == len(set(elem.name for elem in model.result))
 
     @allure.severity(severity_level=Severity.NORMAL)
-    @allure.tag('GET', 'Price plane', 'uuid')
+    @allure.tag('GET', 'Price plan', 'uuid')
     def test_get_special_price_plan(self, api_session):
         uuid = '74566568-dae2-48e4-97da-0b4a7ef7fff0'
         response = api_session.request(method='GET', endpoint=f'servers/v2/plan/{uuid}')

@@ -72,6 +72,6 @@ class PriceCalculator:
                     browser.all('.single-summary-card__title').element_by(have.exact_text(f'{item.value}')).element(
                         '.delete-button__icon').perform(command.js.click)
 
-    def should_have_special_button(self):
+    def should_have_specific_button(self):
         with allure.step('Check the result of all actions'):
             browser.element('.hyper-calc-layout .btn--dark').should(have.exact_text('Начать расчет'))
