@@ -9,6 +9,8 @@ from selectel_tests.models.applications import app
 
 @allure.feature('Registration form')
 @allure.label('owner', 'Viktoriia Lavrova')
+@allure.label('layer', 'ui')
+@allure.link('https://my.selectel.ru/registration')
 @pytest.mark.ui
 class TestRegistrationForm:
     @allure.severity(severity_level=Severity.BLOCKER)

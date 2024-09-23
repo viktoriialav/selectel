@@ -14,6 +14,7 @@ from selectel_tests.utils.generate_tag import random_tag
 pytestmark = [
     pytest.mark.api,
     allure.label('owner', 'Viktoriia Lavrova'),
+    allure.label('layer', 'api'),
     allure.link('https://developers.selectel.ru/docs/servers/dedicated_servers/')
 ]
 

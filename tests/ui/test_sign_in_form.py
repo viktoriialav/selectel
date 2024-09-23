@@ -10,7 +10,8 @@ from selectel_tests.models.applications import app
 
 @allure.feature('"Sing in" form')
 @allure.label('owner', 'Viktoriia Lavrova')
-@allure.link('https://selectel.ru')
+@allure.label('layer', 'ui')
+@allure.link('https://my.selectel.ru/login')
 @pytest.mark.ui
 class TestSignInForm:
     @allure.severity(severity_level=Severity.BLOCKER)

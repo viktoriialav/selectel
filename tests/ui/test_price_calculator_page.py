@@ -8,6 +8,7 @@ from selectel_tests.models.applications import app
 
 @allure.feature('Price calculator page')
 @allure.label('owner', 'Viktoriia Lavrova')
+@allure.label('layer', 'ui')
 @allure.link('https://selectel.ru/prices/calculator/')
 @pytest.mark.ui
 class TestPriceCalculator:

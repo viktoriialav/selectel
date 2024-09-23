@@ -9,6 +9,7 @@ from selectel_tests.utils.auth_cookie import get_auth_cookie
 
 @allure.feature('User account')
 @allure.label('owner', 'Viktoriia Lavrova')
+@allure.label('layer', 'ui')
 @allure.link('https://selectel.ru')
 @pytest.mark.ui
 class TestUserAccount:

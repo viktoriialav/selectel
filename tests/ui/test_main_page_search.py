@@ -8,6 +8,7 @@ from selectel_tests.models.applications import app
 
 @allure.feature('Search on the main page')
 @allure.label('owner', 'Viktoriia Lavrova')
+@allure.label('layer', 'ui')
 @allure.link('https://selectel.ru')
 @pytest.mark.ui
 class TestMainSearch:
