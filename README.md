@@ -14,12 +14,17 @@ ___
 <a id="item-1"></a>
 ### Исходные данные
 
-[Cайт компании Selectel](https://selectel.ru)
+- [Cайт компании Selectel](https://selectel.ru)
 
 <p align="center">
-<img align="center" src="/resources/Main_page.png" width="1000" alt="Main_page"/>
+<img align="center" src="/resources/pictures/Main_page.png" width="700" alt="Main_page"/>
 </p>
 
+- [Документация к API](https://developers.selectel.ru/?pk_vid=19f8c726f4b959a717271225720b01ca)
+
+<p align="center">
+<img align="center" src="/resources/pictures/Doc_for_API.png" width="700" alt="Main_page"/>
+</p>
 
 ___
 <a id="item-2"></a>
