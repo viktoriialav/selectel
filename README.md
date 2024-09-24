@@ -4,12 +4,13 @@ ___
 - [Исходные данные](#item-1)
 - [Цель проекта](#item-2)
 - [Используемые технологии](#item-3)
-- [UI тесты](#item-4)
-- [API тесты](#item-5)
-- [Сборка проекта и запуск тестов](#item-6)
-- [Отчет о прохождении тестов](#item-7)
-- [Уведомление о прохождении тестов](#item-8)
-- [Видео о прохождении тестов](#item-9)
+- [UI автотесты](#item-4)
+- [API автотесты](#item-5)
+- [Ручные UI тесты](#item-6)
+- [Сборка проекта и запуск тестов](#item-7)
+- [Отчет о прохождении тестов](#item-8)
+- [Уведомление о прохождении тестов](#item-9)
+- [Видео о прохождении тестов](#item-10)
 ___
 <a id="item-1"></a>
 ### :jigsaw: Исходные данные
@@ -101,7 +102,7 @@ ___
 
 ___
 <a id="item-4"></a>
-### :page_with_curl: UI тесты
+### :page_with_curl: UI автотесты
 
 - Работа поиска на главной странице при условии:
     - Правильного поискового ввода
@@ -116,13 +117,13 @@ ___
     - Пустых обязательных полей
 - Работа калькулятора цен на услуги:
     - Возможность добавления всех услуг в корзину для расчета стоимости и их последующего удаления
-- Аккаунт пользователя
+- Аккаунт пользователя (с регистрацией через API)
     - Проверка наличия в аккаунте основной информации о пользователе и балансе счета
     - Добавление двух серверов в список сравнения
 
 ___
 <a id="item-5"></a>
-### :page_with_curl: API тесты
+### :page_with_curl: API автотесты
 
 Распределенные серверы:
 - Работа с ресурсами пользователя:
@@ -140,9 +141,17 @@ ___
   - Получение полного списка доступных услуг
   - Получение списка доступных услуг конкретного типа
   - Запрос стоимости услуги (при указании типа услуги, тарифного плана и локации)
-
 ___
 <a id="item-6"></a>
+### :page_with_curl: Ручные UI тесты
+
+Баланс аккаунта пользователя:
+- Открыть меню "Баланс и платежи" в личном аккаунте
+- Открыть страницу системы оплаты для пополнения баланса аккаунта пользователя
+- Проверить все опции вкладки "Услуги" в меню "Баланс и платежи"
+
+___
+<a id="item-7"></a>
 ### :rocket: Сборка проекта и запуск тестов
 
 Запустить проект можно как локально, так и удаленно. Далее приведены списки действий для обоих случаев.
@@ -191,8 +200,10 @@ ___
 - В терминале ввести `env_context='local' pytest` или `env_context='selenoid' pytest` соответственно*
 
 ___
-<a id="item-7"></a>
+<a id="item-8"></a>
 ### :clipboard: Отчет о прохождении тестов
+
+### Allure Report
 
 Отчет формируется в **Allure Report** автоматически после прохождения тестов.  
 Если проект запущен удаленно, отчет можно открыть прямо из **Jenkins** для интересующего запуска проекта, кликнув на
@@ -239,6 +250,8 @@ allure serve allure-results
 <img src="resources/pictures/Allure_Report_Test_Cases_UI_2.png" width="700" alt="Allure Report Test Cases">
 </p>
 
+### Allure TestOPs
+
 Также для проекта в **Jenkins** настроена синхронизация с **Allure TestOps**. В нем можно отсортировать тест-кейсы 
 необходимым образом, оформить баги, перезапустить тесты, которые не прошли, или запустить весь проект заново, 
 выбрав необходимые параметры запуска, добавить ручные тест-кейсы и т.п.
@@ -272,19 +285,36 @@ allure serve allure-results
 <img src="resources/pictures/Allure_TestOps_Test_Cases.png" width="700" alt="Allure TestOps Tests Cases">
 </p>
 
-При необходимости можно отфильтровать тесты по какому-либо критерию. Ниже тесты отфильтрованы по тегам `ui` и `api` 
-соответственно.
+При необходимости можно отфильтровать тесты по какому-либо критерию. Ниже тесты отфильтрованы:
+- по слою `UI Tests` и типу `Automated`
 
 <p align="center">
-<img src="resources/pictures/Allure_TestOps_Test_Cases_Filtered_UI.png" width="700" alt="Allure TestOps Tests Cases Filtered">
+<img src="resources/pictures/Allure_TestOps_Test_Cases_Filtered_UI_Automated.png" width="700" alt="Allure TestOps Tests Cases Filtered UI Automated">
 </p>
 
+- по слою `API Tests` и типу `Automated`
+
 <p align="center">
-<img src="resources/pictures/Allure_TestOps_Test_Cases_Filtered_API.png" width="700" alt="Allure TestOps Tests Cases Filtered">
+<img src="resources/pictures/Allure_TestOps_Test_Cases_Filtered_API.png" width="700" alt="Allure TestOps Tests Cases Filtered API">
+</p>
+
+- по типу `Manual`
+
+<p align="center">
+<img src="resources/pictures/Allure_TestOps_Test_Cases_Filtered_Manual.png" width="700" alt="Allure TestOps Tests Cases Filtered Manual">
+</p>
+
+### Jira
+
+Также для проекта была реализована интеграция отчета из Allure TestOps c задачей в **Jira**.  
+[Ссылка на задачу в Jira.](https://jira.autotests.cloud/browse/HOMEWORK-1352)
+
+<p align="center">
+<img src="resources/pictures/Jira_Task.png" width="1000" alt="Jira task">
 </p>
 
 ___
-<a id="item-8"></a>
+<a id="item-9"></a>
 ### :envelope_with_arrow: Уведомление о прохождении тестов
 
 Проект в **Jenkins** настроен таким образом, чтобы уведомления приходили в конкретный чат 
@@ -295,7 +325,7 @@ ___
 </p>
 
 ___
-<a id="item-9"></a>
+<a id="item-10"></a>
 ### :film_projector: Видео о прохождении тестов
 В **Allure** отчете для всех тестов приведены видео с их прохождением. 
 Ниже приведены:
