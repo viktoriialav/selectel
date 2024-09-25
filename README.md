@@ -158,31 +158,34 @@ ___
 
 Для запуска проекта удаленно с использованием **Jenkins** и **Selenoid** необходимо:
 - Создать новый проект в **Jenkins**
-- Указать в настройках проекта **Source Code Management** в **Git** директорию текущего проекта и ветку `main`
-- В **Build Steps**:
-  * Создать файл `.env` по примеру `.env.example`, указав для него опции **Create at Workspace**  и **Overwrite file**
-  * Создать **Execute shell** с кодом:
+- Указать в **Confugure** проекта:
+  - В разделе **Source Code Management** в пункте **Git** директорию текущего проекта и ветку `main`
+  - В **Build Steps**:
+    * Создать файл `.env` по примеру `.env.example`, указав для него опции **Create at Workspace**  и **Overwrite file**
+    * Создать **Execute shell** с кодом:
+      ```shell
+      python -m venv .venv
+      source .venv/bin/activate
+      pip install poetry
+      poetry install
+      env_context='selenoid' pytest
+      ```
+      По умолчанию будут запущены все тесты в браузере **Chrome** 125 версии.
+    Если требуется изменить папку для запуска тестов, версию браузера или сам браузер, необходимо сделать 
+    параметризацию проекта и указать для запуска тестов:
     ```shell
-    python -m venv .venv
-    source .venv/bin/activate
-    pip install poetry
-    poetry install
-    env_context='selenoid' pytest
+    env_context='selenoid' driver_name=${DRIVER_NAME} browser_version=${BROWSER_VERSION} pytest ${BROWSER_VERSION}
     ```
-    По умолчанию будут запущены все тесты в браузере **Chrome** 125 версии.
-  Если требуется изменить папку для запуска тестов, версию браузера или сам браузер, необходимо сделать 
-  параметризацию проекта и указать для запуска тестов:
-  ```shell
-  env_context='selenoid' driver_name=${DRIVER_NAME} browser_version=${BROWSER_VERSION} pytest ${BROWSER_VERSION}
-  ```
-  , где `DRIVER_NAME`, `BROWSER_VERSION`, `BROWSER_VERSION` - параметры проекта. Возможные значения для первых двух 
-указаны в файле `config.py` проекта.
-  * В **Post-build Actions** добавить опцию **Allure Report** с указанием пути `allure-results`
-  * Добавление синхронизации с **Allure TestOps** и добавление оповещений в **Telegram** может быть добавлено
-  дополнительно
+      , где `DRIVER_NAME`, `BROWSER_VERSION`, `BROWSER_VERSION` - параметры проекта. Возможные значения для первых двух 
+    указаны в файле `config.py` проекта.
+  - В **Post-build Actions** добавить опцию **Allure Report** с указанием пути `allure-results`
+    * Добавление синхронизации с **Allure TestOps** и добавление оповещений в **Telegram** может быть добавлено
+    дополнительно
+- Запустить проект, нажав **"Build Now"** (Если проект параметризован, то нажать **Build with Parameters**, 
+выбрать нужные параметры и нажать **Build**)
 
 
-Вариант для преподавателей и учеников школы QA.GURU:
+Вариант для преподавателей и учеников школы **QA.GURU**:
 - Перейти по [ссылке](https://jenkins.autotests.cloud/job/14_vic_lav_selectel/) к проекту в **Jenkins**
 - Нажать **Build with Parameters**
 - Выбрать папку с тестами, название браузера, версию браузера (или оставить значение по умолчанию)
