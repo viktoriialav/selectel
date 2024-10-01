@@ -70,16 +70,34 @@ class TestResourceTags:
         assert response.request.body is None
 
     @allure.severity(severity_level=Severity.NORMAL)
+    @allure.tag('GET', 'Tag list')
+    def test_create_tag_and_check_it_in_general_user_tag_list(self, api_session):
+        name = random_tag()
+        response_to_create_tag = api_session.request(method='POST',
+                                       endpoint='servers/v2/resource/tag',
+                                       json={'name': name})
+        tag_uuid = response_to_create_tag.json()['result']['uuid']
+
+        response = api_session.request(method='GET',
+                                       endpoint='servers/v2/resource/tag')
+
+        assert response.status_code == 200
+        model = ListResourceTags.model_validate(response.json())
+        assert response.request.body is None
+        assert (tag_uuid, name) in ((elem.uuid, elem.name) for elem in model.result)
+
+    @allure.severity(severity_level=Severity.NORMAL)
     @allure.tag('GET', 'Update', 'Tag')
     def test_update_user_tag(self, api_session):
-        response_to_find_uuid = api_session.request(method='GET',
-                                                    endpoint='servers/v2/resource/tag')
-        all_tags = response_to_find_uuid.json()['result']
-        first_tag_uuid = all_tags[0]['uuid']
+        name = random_tag()
+        response_to_get_uuid = api_session.request(method='POST',
+                                       endpoint='servers/v2/resource/tag',
+                                       json={'name': name})
+        tag_uuid = response_to_get_uuid.json()['result']['uuid']
 
         new_name = random_tag()
         main_response = api_session.request(method='PUT',
-                                            endpoint=f'servers/v2/resource/tag/{first_tag_uuid}',
+                                            endpoint=f'servers/v2/resource/tag/{tag_uuid}',
                                             json={'name': new_name})
 
         assert main_response.status_code == 200
@@ -90,17 +108,19 @@ class TestResourceTags:
     @allure.severity(severity_level=Severity.NORMAL)
     @allure.tag('DELETE', 'Tag')
     def test_delete_user_tag(self, api_session):
-        response = api_session.request(method='GET',
-                                       endpoint='servers/v2/resource/tag')
-        uuid = response.json()['result'][0]['uuid']
+        name = random_tag()
+        response_to_get_uuid = api_session.request(method='POST',
+                                                   endpoint='servers/v2/resource/tag',
+                                                   json={'name': name})
+        tag_uuid = response_to_get_uuid.json()['result']['uuid']
 
         response = api_session.request(method='DELETE',
-                                       endpoint=f'servers/v2/resource/tag/{uuid}')
+                                       endpoint=f'servers/v2/resource/tag/{tag_uuid}')
 
         assert response.status_code == 200
         assert response.request.body is None
         model = DeletedResourceTag.model_validate(response.json())
-        assert uuid == model.result.uuid
+        assert tag_uuid == model.result.uuid
 
 
 @allure.feature('Price plans')
