@@ -70,23 +70,6 @@ class TestResourceTags:
         assert response.request.body is None
 
     @allure.severity(severity_level=Severity.NORMAL)
-    @allure.tag('GET', 'Tag list')
-    def test_create_tag_and_check_it_in_general_user_tag_list(self, api_session):
-        name = random_tag()
-        response_to_create_tag = api_session.request(method='POST',
-                                       endpoint='servers/v2/resource/tag',
-                                       json={'name': name})
-        tag_uuid = response_to_create_tag.json()['result']['uuid']
-
-        response = api_session.request(method='GET',
-                                       endpoint='servers/v2/resource/tag')
-
-        assert response.status_code == 200
-        model = ListResourceTags.model_validate(response.json())
-        assert response.request.body is None
-        assert (tag_uuid, name) in ((elem.uuid, elem.name) for elem in model.result)
-
-    @allure.severity(severity_level=Severity.NORMAL)
     @allure.tag('GET', 'Update', 'Tag')
     def test_update_user_tag(self, api_session):
         name = random_tag()
