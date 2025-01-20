@@ -8,8 +8,7 @@ class SignInPage:
     def open(self):
         with allure.step('Open "sign in" form'):
             browser.open('/')
-            browser.element('.header__control').element(
-                '[data-ph-event="site_component_header_button-login"]').click()
+            browser.element('.header-main__control').element('a[href*="login"]').click()
             browser.switch_to_next_tab()
 
     def enter_username(self, value):

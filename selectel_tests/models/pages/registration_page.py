@@ -8,8 +8,7 @@ class RegistrationPage:
     def open(self):
         with allure.step('Open registration form'):
             browser.open('/')
-            browser.element('.header__control').element(
-                '[data-ph-event="site_component_header_button-registration"]').click()
+            browser.element('.header-main__control').element('a[href*="registration"]').click()
             browser.switch_to_next_tab()
 
     def enter_email(self, value):

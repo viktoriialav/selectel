@@ -14,9 +14,10 @@ class UserAccount:
     def open(self):
         with allure.step('Open the user account'):
             browser.open('/')
-            browser.element('.header__control .account-info__id.small').click()
-            browser.all('.account-info__dropdown .ant-dropdown-menu-item').element_by(
+            browser.element('.header-main__control').element('.user-info').click()
+            browser.all('.control-panel__links.shown>li').element_by(
                 have.exact_text('Панель управления')).click()
+            browser.switch_to_next_tab()
 
     def open_server_section(self):
         with allure.step('Open the server section in the user account'):

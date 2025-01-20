@@ -14,7 +14,7 @@ class PriceCalculator:
     def add_firewall(self, item: Service):
         with allure.step(f'Add "{item.value}"'):
             # Open 'Firewalls'
-            browser.all('.hyper-calc-layout__tab').element_by(have.exact_text(item.value)).click()
+            browser.all('.hyper-calc-tabs__item').element_by(have.exact_text(item.value)).click()
 
             # Select necessary option and add it
             browser.all('.firewall-card').first.element('.ant-btn').click()
@@ -23,7 +23,7 @@ class PriceCalculator:
     def add_dedicated_server(self, item: Service):
         with allure.step(f'Add "{item.value}"'):
             # Open 'Dedicated server'
-            browser.all('.hyper-calc-layout__tab').element_by(have.exact_text(item.value)).click()
+            browser.all('.hyper-calc-tabs__item').element_by(have.exact_text(item.value)).click()
 
             # Select necessary option and add it
             browser.all('.server--hc .server__quantity--available').first.element('..').element('.ant-btn').click()
@@ -32,16 +32,16 @@ class PriceCalculator:
     def add_dedicated_server_config(self, item: Service):
         with allure.step(f'Add "{item.value}"'):
             # Open 'Dedicated server configuration'
-            browser.all('.hyper-calc-layout__tab').element_by(have.exact_text(item.value)).click()
+            browser.all('.hyper-calc-tabs__item').element_by(have.exact_text(item.value)).click()
 
             # Open internal frame
             browser.switch_to.frame(
-                browser.element('[src="/custom_calc/?new-design&hypercalc"]').with_(timeout=10).should(
+                browser.element('[src="/custom_calc/?new-design&hypercalc"]').with_(timeout=15).should(
                     be.visible).locate())
 
             # Open processor's menu and select necessary one
-            browser.element('#select_12').with_(timeout=10).should(be.visible).click()
-            browser.element('#select_container_13').element('#select_option_14').click()
+            browser.element('[name=select_cpu0]').with_(timeout=10).should(be.visible).click()
+            browser.element('.md-select-menu-container.md-active.md-clickable').all('[id^="select_option_"]')[0].click()
 
             # Wait for the option to be added
             browser.element('[name=select_ram0]').with_(timeout=10).should(
@@ -60,7 +60,7 @@ class PriceCalculator:
                 if item.name not in {Service.cloud_servers.name, Service.dedicated_servers.name,
                                      Service.dedicated_server_config.name, Service.firewalls.name}:
                     with allure.step(f'Add "{item.value}"'):
-                        browser.all('.hyper-calc-layout__tab').element_by(have.exact_text(item.value)).click()
+                        browser.all('.hyper-calc-tabs__item').element_by(have.exact_text(item.value)).click()
 
             self.add_firewall(Service.firewalls)
 
