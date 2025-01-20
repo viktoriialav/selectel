@@ -63,6 +63,9 @@ ___
         <a target="_blank" href=https://docs.pytest.org/en/stable/index.html#>
           <img align="center" src="/resources/icons/Pytest.svg" width="40" height="40" alt="Pytest"/>
         </a>
+        <a target="_blank" href=https://requests.readthedocs.io/en/latest/#>
+          <img align="center" src="/resources/icons/requests.png" width="40" height="40" alt="Requests"/>
+        </a>
       </td>
     </tr>
     <tr>
@@ -335,7 +338,7 @@ ___
 - все, кроме теста калькулятора цен на услуги и тестов аккаунта пользователя
 - 
 <p align="center">
-<img src="resources/video/video_tests.gif" width="700" alt="Selenoid Video">
+<img src="resources/video/video_other_tests.gif" width="700" alt="Selenoid Video">
 </p>
 
 - тестирование калькулятора цен на услуги
@@ -345,7 +348,7 @@ ___
 
 - тестирование аккаунта пользователя
 <p align="center">
-<img src="resources/video/User_account.gif" width="700" alt="Selenoid Video">
+<img src="resources/video/video_user_account.gif" width="700" alt="Selenoid Video">
 </p>
 
 (*) - все команды указаны для **ОС** **Windows** при настройке использования **Git Bash** для терминала **PyCharm**
