@@ -346,6 +346,7 @@ ___
 <img src="resources/video/video_price_calculator.gif" width="700" alt="Selenoid Video">
 </p>
 
+
 - тестирование аккаунта пользователя
 <p align="center">
 <img src="resources/video/video_user_account.gif" width="700" alt="Selenoid Video">
