@@ -24,7 +24,8 @@ ___
 - [Документация к **API**](https://developers.selectel.ru/?pk_vid=19f8c726f4b959a717271225720b01ca)
 
 <p align="center">
-<img align="center" src="/resources/pictures/Doc_for_API.png" width="700" alt="Main_page"/>
+<img align="center" src="/resources/pictures/Doc_for_API.png" width="400" alt="Main_page"/>
+<img align="center" src="/resources/pictures/Doc_for_API_2.png" width="400" alt="Main_page"/>
 </p>
 
 ___
